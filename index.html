@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Tienda theperuvianshamans</title>
+
+<style>
+/* ===== GENERAL ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* ===== HEADER FIJO ===== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(0,0,0,0.65);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+}
+
+.header-content {
+  max-width: 1200px;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: white;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 14px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* ===== MAIN ===== */
+main {
+  margin-top: 70px;
+}
+
+/* ===== SLIDER HERO ===== */
+.hero {
+  position: relative;
+  width: 100%;
+}
+
+.hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  max-width: 600px;
+}
+
+.hero button {
+  margin-top: 20px;
+  padding: 12px 28px;
+  border: none;
+  background: #c8b091;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* BOTONES SLIDER */
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  user-select: none;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+/* ===== SECCIÓN PRODUCTOS ===== */
+.productos-section {
+  padding: 60px 20px;
+}
+
+.productos-header {
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.productos-header h2 {
+  font-size: 28px;
+}
+
+.scroll-btn {
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.productos {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  gap: 30px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 20px;
+}
+
+.productos::-webkit-scrollbar {
+  display: none;
+}
+
+.producto {
+  min-width: 250px;
+}
+
+/* 👇 CONTENEDOR IMAGEN PRODUCTO */
+.producto-img {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+/* 👇 IMAGEN UNIFORME */
+.producto-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.producto h4 {
+  font-size: 15px;
+  margin: 10px 0 5px;
+}
+
+.stars {
+  color: #b08b5a;
+  font-size: 14px;
+}
+
+.precio {
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+/* ===== SECCIONES EXTRA ===== */
+.section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.section.alt {
+  background: #f4f4f4;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-content">
+    <nav class="menu">
+      <a href="#">Store</a>
+      <a href="#">Our Story</a>
+      <a href="#">Contact</a>
+      <a href="#">Blog</a>
+    </nav>
+
+    <div class="logo">ThePeruvianShamans</div>
+
+    <nav class="menu">
+      <a href="#">Account</a>
+      <a href="#">Search</a>
+      <a href="#">Cart</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- SLIDER -->
+<section class="hero">
+  <img id="slide" src="imagenes/slide1.jpg">
+
+  <div class="hero-overlay">
+    <h1>Thoughtfully Crafted Stationery</h1>
+    <p>Discover products crafted with natural aesthetics.</p>
+    <button>SHOP NOW</button>
+  </div>
+
+  <div class="nav prev" onclick="anterior()">❮</div>
+  <div class="nav next" onclick="siguiente()">❯</div>
+</section>
+
+<!-- PRODUCTOS -->
+<section class="productos-section">
+
+  <div class="productos-header">
+    <button class="scroll-btn" onclick="scrollProductos(-1)">❮</button>
+    <h2>Holiday Picks</h2>
+    <button class="scroll-btn" onclick="scrollProductos(1)">❯</button>
+  </div>
+
+  <div class="productos" id="productos">
+
+    <div class="producto">
+      <div class="producto-img"><img src="imagenes/p1.jpg"></div>
+      <h4>Palo Santo Smudging Sticks Premium</h4>
+      <div class="stars">★★★★★ (162)</div>
+      <div class="precio">S/. 45.00</div>
+    </div>
+
+    <div class="producto">
+      <div class="producto-img"><img src="imagenes/p2.jpg"></div>
+      <h4>Dragon’s Blood Pure</h4>
+      <div class="stars">★★★★★ (149)</div>
+      <div class="precio">S/. 69.00</div>
+    </div>
+
+    <div class="producto">
+      <div class="producto-img"><img src="imagenes/p3.jpg"></div>
+      <h4>Palo Santo Incense Sticks</h4>
+      <div class="stars">★★★★★ (80)</div>
+      <div class="precio">S/. 35.00</div>
+    </div>
+
+    <div class="producto">
+      <div class="producto-img"><img src="imagenes/p4.jpg"></div>
+      <h4>Palo Santo Single Pack</h4>
+      <div class="stars">★★★★★ (31)</div>
+      <div class="precio">S/. 38.00</div>
+    </div>
+
+    <div class="producto">
+      <div class="producto-img"><img src="imagenes/p5.jpg"></div>
+      <h4>Palo Santo Essential Oil</h4>
+      <div class="stars">★★★★★ (22)</div>
+      <div class="precio">S/. 75.00</div>
+    </div>
+
+    <div class="producto">
+      <div class="producto-img"><img src="imagenes/p6.jpg"></div>
+      <h4>Incense Holder Handmade</h4>
+      <div class="stars">★★★★★ (18)</div>
+      <div class="precio">S/. 42.00</div>
+    </div>
+
+    <div class="producto">
+      <div class="producto-img"><img src="imagenes/p7.jpg"></div>
+      <h4>Palo Santo Bundle Pack</h4>
+      <div class="stars">★★★★★ (54)</div>
+      <div class="precio">S/. 99.00</div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section alt">
+  <h2>Nuestra Historia</h2>
+  <p>Contenido adicional aquí.</p>
+</section>
+
+</main>
+
+<script>
+/* SLIDER */
+const slides = [
+  "imagenes/img9.jpg",
+  "imagenes/img8.jpg",
+  "imagenes/img7.jpg"
+];
+let index = 0;
+const slide = document.getElementById("slide");
+
+function siguiente() {
+  index = (index + 1) % slides.length;
+  slide.src = slides[index];
+}
+
+function anterior() {
+  index = (index - 1 + slides.length) % slides.length;
+  slide.src = slides[index];
+}
+
+/* PRODUCTOS SCROLL */
+function scrollProductos(dir) {
+  document.getElementById("productos").scrollLeft += dir * 300;
+}
+</script>
+
+</body>
+</html>
+
+
+
