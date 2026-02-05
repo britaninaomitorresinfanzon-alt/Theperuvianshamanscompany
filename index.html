@@ -153,14 +153,12 @@ main {
   min-width: 250px;
 }
 
-/* 👇 CONTENEDOR IMAGEN PRODUCTO */
 .producto-img {
   width: 100%;
   height: 280px;
   overflow: hidden;
 }
 
-/* 👇 IMAGEN UNIFORME */
 .producto-img img {
   width: 100%;
   height: 100%;
@@ -204,7 +202,6 @@ main {
 
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="header-content">
     <nav class="menu">
@@ -226,13 +223,12 @@ main {
 
 <main>
 
-<!-- SLIDER -->
 <section class="hero">
-  <img id="slide" src="imagenes/slide1.jpg">
+  <img id="slide" src="imagenes/img9.jpg">
 
   <div class="hero-overlay">
-    <h1>Thoughtfully Crafted Stationery</h1>
-    <p>Discover products crafted with natural aesthetics.</p>
+    <h1 id="slide-title">Sacred Palo Santo</h1>
+    <p id="slide-text">Purify your space with ancestral energy from Peru.</p>
     <button>SHOP NOW</button>
   </div>
 
@@ -240,9 +236,7 @@ main {
   <div class="nav next" onclick="siguiente()">❯</div>
 </section>
 
-<!-- PRODUCTOS -->
 <section class="productos-section">
-
   <div class="productos-header">
     <button class="scroll-btn" onclick="scrollProductos(-1)">❮</button>
     <h2>Holiday Picks</h2>
@@ -311,33 +305,63 @@ main {
 </main>
 
 <script>
-/* SLIDER */
 const slides = [
-  "imagenes/img9.jpg",
-  "imagenes/img8.jpg",
-  "imagenes/img7.jpg"
+  {
+    img: "imagenes/img9.png",
+    title: "Palo Santo Standar",
+    text: "Responsibly sourced Palo Santo sticks, naturally fallen and carefully selected in collaboration with local communities. Each stick is air-dried to preserve its warm, woody aroma with subtle citrus notes. Designed for daily aromatic use, reflecting a balance between tradition, sustainability, and quality."
+  },
+  {
+    img: "imagenes/img8.jpg",
+    title: "Cone Incense",
+    text: "Artisan-crafted incense cones made from natural aromatic ingredients and traditional techniques. Produced under responsible sourcing standards, these cones provide a refined, consistent burn and a smooth fragrance, ideal for sophisticated ambient scenting."
+  },
+  {
+    img: "imagenes/img7.jpg",
+    title: "Thick Stick incense",
+    text: "Handmade thick incense sticks with a higher concentration of natural aromatic material, resulting in a slower burn and deeper scent diffusion. Developed through ethical production processes that support local livelihoods and preserve ancestral knowledge."
+  },
+  {
+    img: "imagenes/img6.jpg",
+    title: "Thick Stick Incense",
+    text: "Elegantly crafted thin incense sticks offering a lighter, more subtle aromatic profile. Ideal for everyday use and smaller spaces, they combine refined fragrance with responsible production and sustainable sourcing."
+  },
+  {
+    img: "imagenes/img5.jpg",
+    title: "Milled Incense",
+    text: "Finely milled aromatic incense powder, produced from responsibly sourced materials and processed with minimal intervention. Suitable for charcoal burning or artisanal formulations, it embodies purity, craftsmanship, and respect for nature."
+  }
 ];
+
 let index = 0;
-const slide = document.getElementById("slide");
+
+const slideImg = document.getElementById("slide");
+const slideTitle = document.getElementById("slide-title");
+const slideText = document.getElementById("slide-text");
+
+function mostrarSlide() {
+  slideImg.src = slides[index].img;
+  slideTitle.textContent = slides[index].title;
+  slideText.textContent = slides[index].text;
+}
 
 function siguiente() {
   index = (index + 1) % slides.length;
-  slide.src = slides[index];
+  mostrarSlide();
 }
 
 function anterior() {
   index = (index - 1 + slides.length) % slides.length;
-  slide.src = slides[index];
+  mostrarSlide();
 }
 
-/* PRODUCTOS SCROLL */
-function scrollProductos(dir) {
-  document.getElementById("productos").scrollLeft += dir * 300;
-}
+setInterval(siguiente, 6000);
 </script>
 
 </body>
 </html>
+
+
 
 
 
