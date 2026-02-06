@@ -17,7 +17,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  height: 70px;
+  height: auto;
   background: rgba(0,0,0,0.65);
   backdrop-filter: blur(6px);
   z-index: 1000;
@@ -41,9 +41,10 @@ header {
   font-size: 14px;
 }
 
-.logo {
-  font-size: 22px;
-  font-weight: bold;
+.logo img {
+  height: 100px;
+  width: auto;
+  display: block;
 }
 
 /* ===== MAIN ===== */
@@ -163,7 +164,6 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
 .producto h4 {
@@ -190,13 +190,6 @@ main {
 .section.alt {
   background: #f4f4f4;
 }
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2rem;
-  }
-}
 </style>
 </head>
 
@@ -211,7 +204,9 @@ main {
       <a href="#">Blog</a>
     </nav>
 
-    <div class="logo">ThePeruvianShamans</div>
+    <div class="logo">
+      <img src="imagenes/logo.png" alt="The Peruvian Shamans Company">
+    </div>
 
     <nav class="menu">
       <a href="#">Account</a>
@@ -309,27 +304,27 @@ const slides = [
   {
     img: "imagenes/img9.png",
     title: "Palo Santo Standar",
-    text: "Responsibly sourced Palo Santo sticks, naturally fallen and carefully selected in collaboration with local communities. Each stick is air-dried to preserve its warm, woody aroma with subtle citrus notes. Designed for daily aromatic use, reflecting a balance between tradition, sustainability, and quality."
+    text: "Responsibly sourced Palo Santo sticks, naturally fallen and carefully selected in collaboration with local communities."
   },
   {
     img: "imagenes/img8.jpg",
     title: "Cone Incense",
-    text: "Artisan-crafted incense cones made from natural aromatic ingredients and traditional techniques. Produced under responsible sourcing standards, these cones provide a refined, consistent burn and a smooth fragrance, ideal for sophisticated ambient scenting."
+    text: "Artisan-crafted incense cones made from natural aromatic ingredients."
   },
   {
     img: "imagenes/img7.jpg",
-    title: "Thick Stick incense",
-    text: "Handmade thick incense sticks with a higher concentration of natural aromatic material, resulting in a slower burn and deeper scent diffusion. Developed through ethical production processes that support local livelihoods and preserve ancestral knowledge."
+    title: "Thick Stick Incense",
+    text: "Handmade thick incense sticks with deeper scent diffusion."
   },
   {
     img: "imagenes/img6.jpg",
-    title: "Thick Stick Incense",
-    text: "Elegantly crafted thin incense sticks offering a lighter, more subtle aromatic profile. Ideal for everyday use and smaller spaces, they combine refined fragrance with responsible production and sustainable sourcing."
+    title: "Thin Stick Incense",
+    text: "Light aromatic profile ideal for daily use."
   },
   {
     img: "imagenes/img5.jpg",
     title: "Milled Incense",
-    text: "Finely milled aromatic incense powder, produced from responsibly sourced materials and processed with minimal intervention. Suitable for charcoal burning or artisanal formulations, it embodies purity, craftsmanship, and respect for nature."
+    text: "Finely milled aromatic incense powder."
   }
 ];
 
@@ -356,6 +351,12 @@ function anterior() {
 }
 
 setInterval(siguiente, 6000);
+
+/* ✅ FUNCIÓN QUE ARREGLA LAS FLECHAS DE PRODUCTOS */
+function scrollProductos(dir) {
+  const contenedor = document.getElementById("productos");
+  contenedor.scrollLeft += dir * contenedor.clientWidth;
+}
 </script>
 
 </body>
