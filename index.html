@@ -122,7 +122,7 @@ main {
   margin: 0 auto 30px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center; /* ✅ ÚNICO CAMBIO */
 }
 
 .productos-header h2 {
@@ -134,6 +134,28 @@ main {
   border: none;
   font-size: 30px;
   cursor: pointer;
+}
+
+/* NUEVO (para alinear flechas) */
+.productos-wrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.scroll-btn:first-of-type {
+  left: -10px;
+}
+
+.scroll-btn:last-of-type {
+  right: -10px;
 }
 
 .productos {
@@ -233,62 +255,66 @@ main {
 
 <section class="productos-section">
   <div class="productos-header">
-    <button class="scroll-btn" onclick="scrollProductos(-1)">❮</button>
     <h2>Holiday Picks</h2>
-    <button class="scroll-btn" onclick="scrollProductos(1)">❯</button>
   </div>
 
-  <div class="productos" id="productos">
+  <div class="productos-wrapper">
+    <button class="scroll-btn" onclick="scrollProductos(-1)">❮</button>
 
-    <div class="producto">
-      <div class="producto-img"><img src="imagenes/p1.jpg"></div>
-      <h4>Palo Santo Smudging Sticks Premium</h4>
-      <div class="stars">★★★★★ (162)</div>
-      <div class="precio">S/. 45.00</div>
+    <div class="productos" id="productos">
+
+      <div class="producto">
+        <div class="producto-img"><img src="imagenes/1.png"></div>
+        <h4>Palo Santo Sticks – Standard</h4>
+        <div class="stars">★★★★★ (162)</div>
+        <div class="precio">S/. 45.00</div>
+      </div>
+
+      <div class="producto">
+        <div class="producto-img"><img src="imagenes/2.png"></div>
+        <h4>Palo Santo Sticks – Premium</h4>
+        <div class="stars">★★★★★ (149)</div>
+        <div class="precio">S/. 69.00</div>
+      </div>
+
+      <div class="producto">
+        <div class="producto-img"><img src="imagenes/3.png"></div>
+        <h4>Cone Incense</h4>
+        <div class="stars">★★★★★ (80)</div>
+        <div class="precio">S/. 35.00</div>
+      </div>
+
+      <div class="producto">
+        <div class="producto-img"><img src="imagenes/4.png"></div>
+        <h4>Thick Stick Incense</h4>
+        <div class="stars">★★★★★ (31)</div>
+        <div class="precio">S/. 38.00</div>
+      </div>
+
+      <div class="producto">
+        <div class="producto-img"><img src="imagenes/5.png"></div>
+        <h4>Thin Stick Incense</h4>
+        <div class="stars">★★★★★ (22)</div>
+        <div class="precio">S/. 75.00</div>
+      </div>
+
+      <div class="producto">
+        <div class="producto-img"><img src="imagenes/p6.jpg"></div>
+        <h4>Incense Holder Handmade</h4>
+        <div class="stars">★★★★★ (18)</div>
+        <div class="precio">S/. 42.00</div>
+      </div>
+
+      <div class="producto">
+        <div class="producto-img"><img src="imagenes/p7.jpg"></div>
+        <h4>Palo Santo Bundle Pack</h4>
+        <div class="stars">★★★★★ (54)</div>
+        <div class="precio">S/. 99.00</div>
+      </div>
+
     </div>
 
-    <div class="producto">
-      <div class="producto-img"><img src="imagenes/p2.jpg"></div>
-      <h4>Dragon’s Blood Pure</h4>
-      <div class="stars">★★★★★ (149)</div>
-      <div class="precio">S/. 69.00</div>
-    </div>
-
-    <div class="producto">
-      <div class="producto-img"><img src="imagenes/p3.jpg"></div>
-      <h4>Palo Santo Incense Sticks</h4>
-      <div class="stars">★★★★★ (80)</div>
-      <div class="precio">S/. 35.00</div>
-    </div>
-
-    <div class="producto">
-      <div class="producto-img"><img src="imagenes/p4.jpg"></div>
-      <h4>Palo Santo Single Pack</h4>
-      <div class="stars">★★★★★ (31)</div>
-      <div class="precio">S/. 38.00</div>
-    </div>
-
-    <div class="producto">
-      <div class="producto-img"><img src="imagenes/p5.jpg"></div>
-      <h4>Palo Santo Essential Oil</h4>
-      <div class="stars">★★★★★ (22)</div>
-      <div class="precio">S/. 75.00</div>
-    </div>
-
-    <div class="producto">
-      <div class="producto-img"><img src="imagenes/p6.jpg"></div>
-      <h4>Incense Holder Handmade</h4>
-      <div class="stars">★★★★★ (18)</div>
-      <div class="precio">S/. 42.00</div>
-    </div>
-
-    <div class="producto">
-      <div class="producto-img"><img src="imagenes/p7.jpg"></div>
-      <h4>Palo Santo Bundle Pack</h4>
-      <div class="stars">★★★★★ (54)</div>
-      <div class="precio">S/. 99.00</div>
-    </div>
-
+    <button class="scroll-btn" onclick="scrollProductos(1)">❯</button>
   </div>
 </section>
 
@@ -352,7 +378,6 @@ function anterior() {
 
 setInterval(siguiente, 6000);
 
-/* ✅ FUNCIÓN QUE ARREGLA LAS FLECHAS DE PRODUCTOS */
 function scrollProductos(dir) {
   const contenedor = document.getElementById("productos");
   contenedor.scrollLeft += dir * contenedor.clientWidth;
